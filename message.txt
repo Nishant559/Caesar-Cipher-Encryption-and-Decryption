@@ -1,0 +1,1 @@
+THIS is a check IF the code is able TO catch upper AS WELL as loWer Case.
