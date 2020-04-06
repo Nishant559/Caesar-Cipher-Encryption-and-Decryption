@@ -1,7 +1,9 @@
 import edu.duke.*;
 
-public class CaesarCipher {
-    public String encrypt(String input, int key) {
+public class CaesarCipher 
+{
+    public String encrypt(String input, int key) 
+    {
         //Make a StringBuilder with message (encrypted)
         StringBuilder encrypted = new StringBuilder(input);
         //Write down the alphabet
@@ -9,13 +11,22 @@ public class CaesarCipher {
         //Compute the shifted alphabet
         String shiftedAlphabet = alphabet.substring(key)+
         alphabet.substring(0,key);
+        String alphabet2=alphabet.toLowerCase();
+        String shiftedAlphabet2=alphabet2.substring(key)+
+        alphabet2.substring(0,key);
+        char currChar;
         //Count from 0 to < length of encrypted, (call it i)
         for(int i = 0; i < encrypted.length(); i++) {
             //Look at the ith character of encrypted (call it currChar)
-            char currChar = encrypted.charAt(i);
+            currChar = encrypted.charAt(i);
+            if(Character.isUpperCase(currChar)){
             //Find the index of currChar in the alphabet (call it idx)
             int idx = alphabet.indexOf(currChar);
+        
+      
+            
             //If currChar is in the alphabet
+            
             if(idx != -1){
                 //Get the idxth character of shiftedAlphabet (newChar)
                 char newChar = shiftedAlphabet.charAt(idx);
@@ -24,11 +35,29 @@ public class CaesarCipher {
             }
             //Otherwise: do nothing
         }
+          if(Character.isLowerCase(currChar)){
+              int idx = alphabet2.indexOf(currChar);
+        
+      
+            
+            //If currChar is in the alphabet
+            
+            if(idx != -1){
+                //Get the idxth character of shiftedAlphabet (newChar)
+                char newChar = shiftedAlphabet2.charAt(idx);
+                //Replace the ith character of encrypted with newChar
+                encrypted.setCharAt(i, newChar);
+            }
+              
+            }
+        }
+            
         //Your answer is the String inside of encrypted
         return encrypted.toString();
-    }
+    
+}
     public void testCaesar() {
-        int key = 17;
+        int key = 3;
         FileResource fr = new FileResource();
         String message = fr.asString();
         String encrypted = encrypt(message, key);
